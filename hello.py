@@ -3,15 +3,15 @@ from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 
 # Replace with your own API endpoint and key
-endpoint = "https://csc490computervision.cognitiveservices.azure.com/"
-subscription_key = "a771ed310c1b4033b523b1cba351f1d4"
+endpoint = os.environ.get('AZURE_ENDPOINT')
+subscription_key = os.environ.get('AZURE_KEY')
 
 # Create an authenticated client
 credentials = CognitiveServicesCredentials(subscription_key)
 client = ComputerVisionClient(endpoint, credentials)
 
 # Read and process the image
-image_path = "images/desktop.jpg"
+image_path = "static/burger.jpg"
 with open(image_path, "rb") as image_file:
     result = client.analyze_image_in_stream(image_file, ["objects"])
 

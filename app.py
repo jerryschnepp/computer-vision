@@ -3,11 +3,10 @@ from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 import os
 
-app = Flask(__name__)
 
-# Replace with your own API endpoint and key
-endpoint = "https://csc490computervision.cognitiveservices.azure.com/"
-subscription_key = "a771ed310c1b4033b523b1cba351f1d4"
+endpoint = os.environ.get('AZURE_ENDPOINT')
+subscription_key = os.environ.get('AZURE_KEY')
+app = Flask(__name__)
 
 # Create an authenticated client
 credentials = CognitiveServicesCredentials(subscription_key)
