@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Image Object Detection</title>
+		<style>
+			img {
+				width: 200px;
+				height: 200px;
+			}
+			body {
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				padding: 30px;
+			}
+			div {
+				display: flex;
+				flex-wrap: wrap;
+				flex: 25%;
+				padding-bottom: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Select an Image for Object Detection</h1>
+		<div>
+			<img
+				src="/static/burger.jpg"
+				onclick="analyzeImage('burger.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/pancakes.jpg"
+				onclick="analyzeImage('pancakes.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/pizza.jpg"
+				onclick="analyzeImage('pizza.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/salad.jpg"
+				onclick="analyzeImage('salad.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/cells.jpg"
+				onclick="analyzeImage('cells.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/bikes.jpg"
+				onclick="analyzeImage('bikes.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/knife_and_axe.jpg"
+				onclick="analyzeImage('knife_and_axe.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/guitars.jpg"
+				onclick="analyzeImage('guitars.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/camera.jpg"
+				onclick="analyzeImage('camera.jpg')"
+				style="cursor: pointer"
+			/>
+			<img
+				src="/static/motorcycles.jpg"
+				onclick="analyzeImage('motorcycles.jpg')"
+				style="cursor: pointer"
+			/>
+		</div>
+
+		<div id="results"></div>
+
+		<script>
+			function analyzeImage(imageName) {
+				fetch("/analyze?image=" + imageName)
+					.then((response) => response.json())
+					.then((data) => {
+						document.getElementById("results").innerHTML =
+							JSON.stringify(data.results, null, 2);
+					})
+					.catch((error) => console.error("Error:", error));
+			}
+		</script>
+	</body>
+</html>
